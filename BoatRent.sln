@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core.Tests", "Boat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core", "BoatRent.Core\BoatRent.Core.csproj", "{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Data", "BoatRent.Data\BoatRent.Data.csproj", "{28C1BB6A-0BDA-4552-8270-DB510A386F68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
