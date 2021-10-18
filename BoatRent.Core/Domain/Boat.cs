@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Domain
 {
     public abstract class Boat
     {

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core.Tests", "BoatRent.Core.Tests\BoatRent.Core.Tests.csproj", "{A7F858F3-A625-41E5-8D87-310B57B57184}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core", "BoatRent.Core\BoatRent.Core.csproj", "{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A7F858F3-A625-41E5-8D87-310B57B57184}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7F858F3-A625-41E5-8D87-310B57B57184}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7F858F3-A625-41E5-8D87-310B57B57184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

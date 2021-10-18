@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Domain
 {
-    internal class LargeSailboat : Boat
+    public class SmallSailboat : Boat
     {
-        public LargeSailboat(string boatNumber) : base(boatNumber)
+        public SmallSailboat(string boatNumber) : base(boatNumber)
         {
         }
 
@@ -15,7 +15,7 @@ namespace BoatRent.Core.Tests
                 return 0;
             }
             var rentTime = RentTimeInHour(start, end);
-            return (basicFee * (decimal)1.5) + (rentTime * hourlyfee * (decimal)1.4);
+            return (basicFee * (decimal)1.2) + (rentTime * hourlyfee * (decimal)1.3);
         }
     }
 }
