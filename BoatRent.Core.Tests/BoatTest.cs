@@ -42,7 +42,7 @@ namespace BoatRent.Core.Tests
 
             var startDate2 = new DateTime(2021, 1, 1, 12, 30, 0); // Start date 2021-01-01 12:30
             var endDate2 = new DateTime(2021, 1, 1, 15, 35, 0); // End date 2021-01-01 15:35
-            
+
 
             //Act
             var price1 = dinghyBoat.CalculatePrice(startDate1, endDate1, hourlyFee, basicFee);
@@ -76,7 +76,7 @@ namespace BoatRent.Core.Tests
 
 
             //Assert
-            Assert.AreEqual((decimal) 31.5, price1);
+            Assert.AreEqual((decimal)31.5, price1);
             Assert.AreEqual(90, price2);
 
         }
@@ -97,13 +97,13 @@ namespace BoatRent.Core.Tests
 
 
             //Act
-            var price1 = dinghyBoat.CalculatePrice(startDate1, endDate1,hourlyFee,basicFee);
-            var price2 = dinghyBoat.CalculatePrice(startDate2, endDate2, hourlyFee,basicFee);
+            var price1 = dinghyBoat.CalculatePrice(startDate1, endDate1, hourlyFee, basicFee);
+            var price2 = dinghyBoat.CalculatePrice(startDate2, endDate2, hourlyFee, basicFee);
 
 
             //Assert
-            Assert.AreEqual((decimal) 36, price1);
-            Assert.AreEqual((decimal) 99, price2);
+            Assert.AreEqual((decimal)36, price1);
+            Assert.AreEqual((decimal)99, price2);
 
         }
     }

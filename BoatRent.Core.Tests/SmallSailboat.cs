@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BoatRent.Core.Tests
 {
@@ -12,7 +10,12 @@ namespace BoatRent.Core.Tests
 
         public override decimal CalculatePrice(DateTime start, DateTime end, decimal hourlyfee, decimal basicFee)
         {
-            throw new NotImplementedException();
+            if (end < start)
+            {
+                return 0;
+            }
+            var rentTime = RentTimeInHour(start, end);
+            return (basicFee * (decimal)1.2) + (rentTime * hourlyfee * (decimal)1.3);
         }
     }
 }
