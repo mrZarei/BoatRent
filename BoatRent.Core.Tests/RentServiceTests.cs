@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BoatRent.Core.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Interfaces
 {
     [TestClass]
     public class RentServiceTests

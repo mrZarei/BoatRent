@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Interfaces
 {
     [TestClass]
     public class BoatTest

@@ -1,9 +1,11 @@
 ﻿using BoatRent.Core.Domain;
+using BoatRent.Core.Interfaces;
+using BoatRent.Core.ViewModels;
 using System;
 using System.Threading.Tasks;
 using static BoatRent.Core.Domain.Boat;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Services
 {
     public class RentService
     {

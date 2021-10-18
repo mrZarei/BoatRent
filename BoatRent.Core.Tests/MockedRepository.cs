@@ -1,11 +1,11 @@
 ﻿using BoatRent.Core.Domain;
+using BoatRent.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Interfaces
 {
     internal class MockedRepository : IBoatRentalRepository
     {
@@ -15,7 +15,7 @@ namespace BoatRent.Core.Tests
             dbset = new List<RentalViewModel>();
         }
         public Task<bool> BoatExists(string boatNumber)
-        {            
+        {
             return Task.FromResult(true);
         }
 
@@ -41,7 +41,7 @@ namespace BoatRent.Core.Tests
                 BoatNumber = boatNumber,
                 BoatType = type,
                 BookingNumber = bookingNumber,
-                StartDate= startDate,
+                StartDate = startDate,
                 IsReturned = false
             });
 

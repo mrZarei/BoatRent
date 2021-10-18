@@ -1,8 +1,9 @@
 ﻿using BoatRent.Core.Domain;
+using BoatRent.Core.ViewModels;
 using System;
 using System.Threading.Tasks;
 
-namespace BoatRent.Core.Tests
+namespace BoatRent.Core.Interfaces
 {
     public interface IBoatRentalRepository : IDisposable
     {

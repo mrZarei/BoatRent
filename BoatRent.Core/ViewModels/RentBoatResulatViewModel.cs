@@ -1,4 +1,4 @@
-﻿namespace BoatRent.Core.Tests
+﻿namespace BoatRent.Core.ViewModels
 {
     public class RentBoatResulatViewModel
     {
