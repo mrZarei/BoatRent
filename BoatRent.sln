@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core.Tests", "BoatRent.Core.Tests\BoatRent.Core.Tests.csproj", "{A7F858F3-A625-41E5-8D87-310B57B57184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoatRent.Core.Tests", "BoatRent.Core.Tests\BoatRent.Core.Tests.csproj", "{A7F858F3-A625-41E5-8D87-310B57B57184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Core", "BoatRent.Core\BoatRent.Core.csproj", "{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoatRent.Core", "BoatRent.Core\BoatRent.Core.csproj", "{F41404D6-63AE-4F49-8D5E-A8C94C1A1C5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Data", "BoatRent.Data\BoatRent.Data.csproj", "{28C1BB6A-0BDA-4552-8270-DB510A386F68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoatRent.Data", "BoatRent.Data\BoatRent.Data.csproj", "{28C1BB6A-0BDA-4552-8270-DB510A386F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoatRent.Web", "BoatRent.Web\BoatRent.Web.csproj", "{6A3C941B-91E3-44B3-A6C8-0F8517D39BE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C1BB6A-0BDA-4552-8270-DB510A386F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A3C941B-91E3-44B3-A6C8-0F8517D39BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A3C941B-91E3-44B3-A6C8-0F8517D39BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A3C941B-91E3-44B3-A6C8-0F8517D39BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A3C941B-91E3-44B3-A6C8-0F8517D39BE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
