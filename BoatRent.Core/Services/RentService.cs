@@ -68,6 +68,7 @@ namespace BoatRent.Core.Services
                     EndDate = endDate,
                     BoatType = booking.BoatType,
                     BookingNumber = booking.BookingNumber,
+                    CustomerNumber = booking.CustomerNumber,
                     StartDate = booking.StartDate,
                     Price = boat.CalculatePrice(booking.StartDate, booking.EndDate, _hourlyFee, _basicFee)
                 };

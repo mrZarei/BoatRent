@@ -42,6 +42,7 @@ namespace BoatRent.Core.Interfaces
                 BoatType = type,
                 BookingNumber = bookingNumber,
                 StartDate = startDate,
+                CustomerNumber = customerNumber,
                 IsReturned = false
             });
 
