@@ -1,6 +1,6 @@
 ﻿using BoatRent.Core.Domain;
 using BoatRent.Core.Interfaces;
-using BoatRent.Core.ViewModels;
+using BoatRent.Core.Models;
 using System;
 using System.Threading.Tasks;
 using static BoatRent.Core.Domain.Boat;
@@ -20,31 +20,24 @@ namespace BoatRent.Core.Services
             _basicFee = basicFee;
         }
 
-        public async Task<RentBoatResulatViewModel> RentBoat(string boatNumber, BoatType boatType, string bookingNumber, string customerNumber, DateTime startDate)
+        public async Task<RentBoatResult> RentBoat(string boatNumber, BoatType boatType, string bookingNumber, string customerNumber, DateTime startDate)
         {
             try
             {
-                if (await _repository.BoatExists(boatNumber))
+                if (await _repository.IsBoatAvailable(boatNumber))
                 {
-                    if (await _repository.IsBoatAvailable(boatNumber))
-                    {
-                        await _repository.Register(boatNumber, boatType, bookingNumber, customerNumber, startDate);
-                        return new RentBoatResulatViewModel { IsSucceed = true };
-                    }
-                    else
-                    {
-                        throw new Exception($"Boat {boatNumber} is not availble");
-                    }
+                    await _repository.Register(boatNumber, boatType, bookingNumber, customerNumber, startDate);
+                    return new RentBoatResult { IsSucceed = true };
                 }
                 else
                 {
-                    throw new Exception($"Boat {boatNumber} could not be found.");
+                    throw new Exception($"Boat {boatNumber} is not availble");
                 }
             }
             catch (Exception ex)
             {
                 // Here we should log the exception
-                return new RentBoatResulatViewModel
+                return new RentBoatResult
                 {
                     IsSucceed = false,
                     Message = ex.Message
@@ -52,24 +45,24 @@ namespace BoatRent.Core.Services
             }
         }
 
-        public async Task<ReceiptViewModel> ReturnBoat(string boatNumber, DateTime endDate)
+        public async Task<ReceiptDto> ReturnBoat(string boatNumber, DateTime endDate)
         {
             try
             {
-                RentalViewModel rentedObject = await _repository.GetLastOpenRentFor(boatNumber);
+                RentalDto rentedObject = await _repository.GetLastOpenRentFor(boatNumber);
                 if (rentedObject == null)
                 {
                     throw new Exception($"Boat {boatNumber} has no open booking.");
                 }
 
-                RentalViewModel rentalViewModel = await _repository.ReturnBoat(rentedObject.BookingNumber, endDate);
-                RentalViewModel booking = rentalViewModel;
+                RentalDto rentalViewModel = await _repository.ReturnBoat(rentedObject.BookingNumber, endDate);
+                RentalDto booking = rentalViewModel;
                 Boat boat = Build(booking.BoatType, booking.BoatNumber);
                 if (boat == null)
                 {
                     throw new Exception($"There is no implementation for boat type {booking.BoatType}");
                 }
-                return new ReceiptViewModel
+                return new ReceiptDto
                 {
                     BoatNumber = booking.BoatNumber,
                     EndDate = endDate,

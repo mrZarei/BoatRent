@@ -1,5 +1,5 @@
 ﻿using BoatRent.Core.Domain;
-using BoatRent.Core.ViewModels;
+using BoatRent.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace BoatRent.Core.Interfaces
 {
     internal class MockedRepository : IBoatRentalRepository
     {
-        List<RentalViewModel> dbset;
+        List<RentalDto> dbset;
         public MockedRepository()
         {
-            dbset = new List<RentalViewModel>();
+            dbset = new List<RentalDto>();
         }
         public Task<bool> BoatExists(string boatNumber)
         {
@@ -24,7 +24,7 @@ namespace BoatRent.Core.Interfaces
             dbset.Clear();
         }
 
-        public Task<RentalViewModel> GetLastOpenRentFor(string boatNumber)
+        public Task<RentalDto> GetLastOpenRentFor(string boatNumber)
         {
             return Task.FromResult(dbset.FindLast(r => r.BoatNumber == boatNumber && !r.IsReturned));
         }
@@ -36,7 +36,7 @@ namespace BoatRent.Core.Interfaces
 
         public Task Register(string boatNumber, Boat.BoatType type, string bookingNumber, string customerNumber, DateTime startDate)
         {
-            dbset.Add(new RentalViewModel
+            dbset.Add(new RentalDto
             {
                 BoatNumber = boatNumber,
                 BoatType = type,
@@ -48,7 +48,7 @@ namespace BoatRent.Core.Interfaces
             return Task.CompletedTask;
         }
 
-        public Task<RentalViewModel> ReturnBoat(string bookingNumber, DateTime endDate)
+        public Task<RentalDto> ReturnBoat(string bookingNumber, DateTime endDate)
         {
             var rentalBoat = dbset.Find(r => r.BookingNumber == bookingNumber);
             rentalBoat.IsReturned = true;

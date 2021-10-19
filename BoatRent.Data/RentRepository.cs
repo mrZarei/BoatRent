@@ -1,11 +1,9 @@
 ﻿using BoatRent.Core.Domain;
 using BoatRent.Core.Interfaces;
-using BoatRent.Core.ViewModels;
+using BoatRent.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BoatRent.Data
@@ -20,7 +18,7 @@ namespace BoatRent.Data
         }
         public async Task<bool> BoatExists(string boatNumber)
         {
-            return await _dbContext.Boats.AnyAsync( b => b.BoatNumber == boatNumber );
+            return await _dbContext.Boats.AnyAsync(b => b.BoatNumber == boatNumber);
         }
 
         public void Dispose()
@@ -28,13 +26,13 @@ namespace BoatRent.Data
             _dbContext.Dispose();
         }
 
-        public async Task<RentalViewModel> GetLastOpenRentFor(string boatNumber)
+        public async Task<RentalDto> GetLastOpenRentFor(string boatNumber)
         {
-            var item = await _dbContext.RentBoat.Where( r => r.Boat.BoatNumber  == boatNumber && !r.IsReturned).LastOrDefaultAsync();
-            if ( item == null) return null;
-            
+            var item = await _dbContext.RentBoat.Where(r => r.Boat.BoatNumber == boatNumber && !r.IsReturned).LastOrDefaultAsync();
+            if (item == null) return null;
+
             // We can use also autmapper for doing mapping like this, but I decided to do that explicity in order to keep it simple.
-            var result = new RentalViewModel
+            var result = new RentalDto
             {
                 BoatNumber = item.Boat.BoatNumber,
                 IsReturned = false,
@@ -47,7 +45,7 @@ namespace BoatRent.Data
 
         public async Task<bool> IsBoatAvailable(string boatNumber)
         {
-            var isInRent = await _dbContext.RentBoat.AnyAsync( r => r.Boat.BoatNumber == boatNumber && !r.IsReturned);
+            var isInRent = await _dbContext.RentBoat.AnyAsync(r => r.Boat.BoatNumber == boatNumber && !r.IsReturned);
             return !isInRent;
         }
 
@@ -78,7 +76,7 @@ namespace BoatRent.Data
             }
         }
 
-        public Task<RentalViewModel> ReturnBoat(string bookingNumber, DateTime endDate)
+        public Task<RentalDto> ReturnBoat(string bookingNumber, DateTime endDate)
         {
             throw new NotImplementedException();
         }

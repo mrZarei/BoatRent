@@ -1,9 +1,9 @@
 ﻿using System;
 using static BoatRent.Core.Domain.Boat;
 
-namespace BoatRent.Core.ViewModels
+namespace BoatRent.Core.Models
 {
-    public class RentalViewModel
+    public class RentalDto
     {
         public string BookingNumber { get; set; }
         public string BoatNumber { get; set; }
