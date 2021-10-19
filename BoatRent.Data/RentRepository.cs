@@ -28,16 +28,20 @@ namespace BoatRent.Data
 
         public async Task<RentalDto> GetLastOpenRentFor(string boatNumber)
         {
-            var item = await _dbContext.RentBoat.Where(r => r.Boat.BoatNumber == boatNumber && !r.IsReturned).LastOrDefaultAsync();
+            var item = await _dbContext.RentBoat
+                .Include("Boat")
+                .Where(r => r.Boat.BoatNumber == boatNumber && !r.IsReturned)
+                .OrderBy( r => r.StartDate).LastOrDefaultAsync();
             if (item == null) return null;
 
             // We can use also autmapper for doing mapping like this, but I decided to do that explicity in order to keep it simple.
             var result = new RentalDto
             {
-                BoatNumber = item.Boat.BoatNumber,
+                BoatNumber = boatNumber,
                 IsReturned = false,
                 BoatType = (Boat.BoatType)Enum.Parse(typeof(Boat.BoatType), item.Boat.BoatType),
                 BookingNumber = item.BookingNumber,
+                CustomerNumber = item.CustomerNumber,
                 StartDate = item.StartDate,
             };
             return result;
@@ -61,7 +65,7 @@ namespace BoatRent.Data
                 }
                 var rentEntity = new Models.RentBoat
                 {
-                    BookingNumber = boatNumber,
+                    BookingNumber = bookingNumber,
                     CustomerNumber = customerNumber,
                     StartDate = startDate,
                     IsReturned = false,
@@ -76,9 +80,26 @@ namespace BoatRent.Data
             }
         }
 
-        public Task<RentalDto> ReturnBoat(string bookingNumber, DateTime endDate)
+        public async Task<RentalDto> ReturnBoat(string bookingNumber, DateTime endDate)
         {
-            throw new NotImplementedException();
+            var rentEntity = await _dbContext.RentBoat.FindAsync(bookingNumber);
+            if (rentEntity != null)
+            {
+                rentEntity.IsReturned = true;
+                rentEntity.EndDate = endDate;
+                await _dbContext.SaveChangesAsync();
+                return new RentalDto
+                {
+                    BookingNumber = rentEntity.BookingNumber,
+                    CustomerNumber = rentEntity.CustomerNumber,
+                    StartDate = rentEntity.StartDate,
+                    IsReturned = rentEntity.IsReturned,
+                    BoatNumber = rentEntity.Boat.BoatNumber,
+                    BoatType = (Boat.BoatType) Enum.Parse(typeof(Boat.BoatType),rentEntity.Boat.BoatType),
+                    EndDate = rentEntity.EndDate
+                };
+            }
+            return null;
         }
 
         private async Task<Models.Boat> GetBoat(string boatNumber)

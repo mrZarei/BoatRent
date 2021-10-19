@@ -55,8 +55,7 @@ namespace BoatRent.Core.Services
                     throw new Exception($"Boat {boatNumber} has no open booking.");
                 }
 
-                RentalDto rentalViewModel = await _repository.ReturnBoat(rentedObject.BookingNumber, endDate);
-                RentalDto booking = rentalViewModel;
+                RentalDto booking = await _repository.ReturnBoat(rentedObject.BookingNumber, endDate);
                 Boat boat = Build(booking.BoatType, booking.BoatNumber);
                 if (boat == null)
                 {
