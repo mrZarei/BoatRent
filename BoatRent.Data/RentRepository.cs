@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BoatRent.Data
 {
-    internal class RentRepository : IBoatRentalRepository
+    public class RentRepository : IBoatRentalRepository
     {
         private RentDbContext _dbContext;
 
@@ -53,26 +53,29 @@ namespace BoatRent.Data
 
         public async Task Register(string boatNumber, Boat.BoatType type, string bookingNumber, string customerNumber, DateTime startDate)
         {
-            var boat = await GetBoat(boatNumber);
-            if ( boat == null )
+            try
             {
-                // Register first the boat
-                await _dbContext.Boats.AddAsync(new Models.Boat
+                var boat = await GetBoat(boatNumber);
+                if (boat == null)
                 {
-                    BoatNumber = boatNumber,
-                    BoatType = type.ToString(),
-                });
-                boat = new Models.Boat { BoatNumber = boatNumber, BoatType = type.ToString(), };
+                    // Register first the boat
+                    boat = new Models.Boat { BoatNumber = boatNumber, BoatType = type.ToString(), };
+                }
+                var rentEntity = new Models.RentBoat
+                {
+                    BookingNumber = boatNumber,
+                    CustomerNumber = customerNumber,
+                    StartDate = startDate,
+                    IsReturned = false,
+                    Boat = boat,
+                };
+                await _dbContext.RentBoat.AddAsync(rentEntity);
+                await _dbContext.SaveChangesAsync();
             }
-            await _dbContext.RentBoat.AddAsync(new Models.RentBoat
+            catch (Exception ex)
             {
-                BookingNumber= boatNumber,
-                CustomerNumber = customerNumber,
-                StartDate = startDate,
-                IsReturned = false,
-                Boat = boat,
-            });
-            await _dbContext.SaveChangesAsync();
+
+            }
         }
 
         public Task<RentalViewModel> ReturnBoat(string bookingNumber, DateTime endDate)
